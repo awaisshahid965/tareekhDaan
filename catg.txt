@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <%- include('../reuseables/head.ejs', { title: 'Add Catagory' }) %>
+  <body>
+    <%- include('../reuseables/header.ejs', { val: 'catg', isLogin }) %>
+
+    <% if (e !== '') { %>
+      <div class="errorMsg e">
+        <%= e %>
+      </div>
+    <% } %>
+
+    <% if (i !== '') { %>
+      <div class="errorMsg i">
+        <%= i %>
+      </div>
+    <% } %>
+
+    <section class="edit_cat">
+      <h2 class="s_h2">Add Catagory</h2>
+      <form action="/add_catg" method="post" enctype="multipart/form-data">
+        <div class="img">
+          <img src="../assets/select.svg" alt="img__choose" />
+        </div>
+        <div class="select_img">
+          <label for="filechs"> Click Here Choose Image File ...</label>
+          <input type="file" id="filechs" name="imageFile">
+        </div>
+        <div class="selectLan">
+          <input type="hidden" name="lang" value="false">
+          <input type="checkbox" id="lang_chck" class="input_chck">
+          <label for="lang_chck" class="label_chck"></label>
+        </div>
+        <div class="input_area chngdir">
+          <input type="text" name="catagoryTitle" class="chdr_title" placeholder="Enter Catagory Title ..." />
+        </div>
+        <div class="input_area">
+            <input type="submit" value="Add Catagory" class="select_cat_btn" name="ok" />
+          </div>
+      </form>
+      <script type="text/javascript">
+        document.querySelector('#filechs').addEventListener('change', function() {
+          let src = window.URL.createObjectURL(document.querySelector('#filechs').files[0]);
+          document.querySelector('.img img').src = src;
+        });
+      </script>
+    </section>
+
+    <%- include('../reuseables/footer.ejs') %>
+  </body>
+</html>
+
+<script type="text/javascript">
+  document.querySelector('.label_chck').addEventListener('click', () => {
+    if (!document.querySelector('.input_chck').checked) {
+      document.querySelector('.selectLan input[type="hidden"]').value = "true";
+      document.querySelector('.chngdir .chdr_title').dir = "rtl";
+      document.querySelector('.chngdir .chdr_title').placeholder = "عنوان درج کریں";
+    } else {
+      document.querySelector('.selectLan input[type="hidden"]').value = "false";
+      document.querySelector('.chngdir .chdr_title').dir = "ltr";
+      document.querySelector('.chngdir .chdr_title').placeholder = "Enter Catagory Title ...";
+    }
+  });
+</script>

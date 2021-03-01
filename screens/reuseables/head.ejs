@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="<%= isUrdu ? 'rtl' : 'ltr' %>">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles/index.css">
+    <title>TareekhDaan - <%= title %></title>
+    <% if (isUrdu) { %>
+      <style media="screen">
+        @font-face {
+          font-family: myUrdu;
+          src: url("/font/jnnk.ttf");
+        }
+        .btn, .newsTitle, .newsDesc, .s_h2, .catg_card_title, .title-main, .title-main span, .lang {
+          font-family: myUrdu !important;
+          font-weight: bold;
+        }
+      </style>
+    <% } %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>

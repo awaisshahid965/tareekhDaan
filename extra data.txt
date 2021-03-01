@@ -1,0 +1,62 @@
+const catagories = [
+  {
+    imgSrc: 'https://img.theculturetrip.com/450x/wp-content/uploads/2019/06/kjdh5e.jpg',
+    title: 'A Brief History of India and Pakistan'
+  },
+  {
+    imgSrc: 'https://www.sialnews.com/images/2011/07/110704210132_5-one-rupee-note.jpg',
+    title: 'History of Pakistani Currency Note: 1947 – 2011'
+  },
+  {
+    imgSrc: 'https://hafsakhawaja.files.wordpress.com/2010/07/untitled.png',
+    title: 'pride « Hafsa Khawaja\'s Blog'
+  },
+  {
+    imgSrc: 'https://www.nationsonline.org/gallery/Pakistan/Derawar-Fort,-Bahawalpur,-Punjab.jpg',
+    title: 'Pakistan - Islamic Republic of Pakistan - Country Profile'
+  },
+  {
+    imgSrc: 'https://img.theculturetrip.com/450x/wp-content/uploads/2019/06/kjdh5e.jpg',
+    title: 'A Brief History of India and Pakistan'
+  },
+  {
+    imgSrc: 'https://propakistani.pk/lens/wp-content/uploads/2019/01/Takht-i-Bahi.jpg',
+    title: 'Top Historical Places in Pakistan That You Must Visit - Lens'
+  }
+];
+
+const data = [
+  {
+    imgSrc: 'https://www.pymnts.com/wp-content/uploads/2020/03/antiques-online-retail.jpg',
+    title: 'News title here',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa ullam sequi illo modi pariatur quos animi! Aliquam vel, quam, quos doloribus unde officiis atque necessitatibus neque reiciendis id illum. Saepe porro laudantium eos perferendis! Blanditiis corporis sint sed minus cupiditate!'
+  }
+];
+<li class="<%= val === 'und' ? 'active' : ''  %>"> <a href="#">&#9874; Update/Delete Blog</a> </li>
+
+
+
+try {
+
+} catch {
+  res.render('index', { errorCode: "500", errorType: "Internal Server Error", errorMsg: "Can't connect to Database...", isLogin: req.session.admin });
+}
+
+
+
+
+<div class="catg_cards_container">
+<% blogs.forEach(blog => { %>
+  <div class="catg_card">
+    <div class="catg_card_img">
+      <img src="<%= blog.imgSrc %>" alt="">
+    </div>
+    <p class="catg_card_title"><%= blog.title %></p>
+    <p class="catg_card_title searchPara"><%= blog.desc.substr(0, 50) %>......</p>
+    <a href="/blog/<%= blog._id %>" class="search_blog">Read Blog</a>
+  </div>
+<% }) %>
+</div>
+
+
+<%= isUrdu ? "" : "" %>

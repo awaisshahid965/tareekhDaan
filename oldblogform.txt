@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <%- include('../reuseables/head.ejs', { title: 'Add Blog' }) %>
+  <body>
+    <%- include('../reuseables/header.ejs', { val: 'blog', isLogin }) %>
+
+    <% if (e !== '') { %>
+      <div class="errorMsg e">
+        <%= e %>
+      </div>
+    <% } %>
+
+    <% if (i !== '') { %>
+      <div class="errorMsg i">
+        <%= i %>
+      </div>
+    <% } %>
+
+    <% if(catg.length > 0) { %>
+      <section class="edit_cat">
+        <h2 class="s_h2">Add a new Blog</h2>
+        <form action="/add_blog" method="post" enctype="multipart/form-data">
+          <div class="img">
+            <img src="../assets/select.svg" alt="img__choose" />
+          </div>
+          <div class="select_img">
+            <label for="filechs"> Click Here Choose Image File ...</label>
+            <input type="file" id="filechs" name="imageFile">
+          </div>
+          <div class="input_area">
+            <input type="text" name="catagoryTitle" placeholder="Enter Blog Title ..." />
+          </div>
+          <div class="input_area">
+            <textarea rows="5" name="catagoryDesc" placeholder="Enter Blog Description ..."></textarea>
+          </div>
+          <select name="catagoryOptions">
+            <% catg.forEach(opt => { %>
+                <option> <%= opt.title %> </option>
+            <% }) %>
+          </select>
+          <div class="input_area">
+              <input type="submit" value="Add Blog" class="select_cat_btn" name="ok" />
+          </div>
+        </form>
+        <script type="text/javascript">
+          document.querySelector('#filechs').addEventListener('change', function() {
+            let src = window.URL.createObjectURL(document.querySelector('#filechs').files[0]);
+            document.querySelector('.img img').src = src;
+          });
+        </script>
+      </section>
+    <% } else { %>
+      <div class="nofound text-center p_some_y">
+        <div class="nofound_img">
+          <img src="/assets/error.svg" alt="error" />
+        </div>
+        <p><b style="color: red;">Caution!</b></p>
+        <p>Please Make Some Catagories first...</p>
+      </div>
+    <% } %>
+
+    <%- include('../reuseables/footer.ejs') %>
+  </body>
+</html>
