@@ -1,0 +1,32 @@
+  <%- include('./reuseables/head.ejs', { title: 'Login', isUrdu }) %>
+  <body>
+    <%- include('./reuseables/header.ejs', { isLogin, isUrdu }) %>
+
+    <div class="login_bk">
+  		<div class="loginContainer">
+  			<div class="login">
+  				<h2 class="s_h2 login_title">
+  					<%= isUrdu ? "ایڈمن لاگ ان" : "Admin Login" %>
+  				</h2>
+          <div class="error"><%= typeof emptyError !== 'undefined' ? isUrdu ? 'فیلڈز خالی نہیں ہوسکتی ہیں' : 'Fields Can\'t be Empty!' : '' %></div>
+          <div class="error">
+            <%= typeof gError !== 'undefined' ? isUrdu ? 'غلط استعملاتی نام یا خفیہ کوڈ' : 'Wrong Username or Password' : '' %>
+          </div>
+  				<form action="/myself_admin" method="POST">
+  					<div class="input_area">
+  						<input type="text" name="email" placeholder="<%= isUrdu ? "ای میل / صارف کا نام" : "Email / Username" %>" value="<%= typeof email !== 'undefined' ? email : '' %>" />
+  					</div>
+  					<div class="input_area">
+  						<input type="password" name="password" placeholder="<%= isUrdu ? "پاس ورڈ" : "Password" %>" />
+  					</div>
+  					<div class="input_area">
+  						<input type="submit" name="ok" />
+  					</div>
+  				</form>
+  			</div>
+  		</div>
+	  </div>
+
+    <%- include('./reuseables/footer.ejs') %>
+  </body>
+</html>

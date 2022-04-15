@@ -1,0 +1,39 @@
+  <%- include('./reuseables/head.ejs', { title: 'Search', isUrdu }) %>
+  <body>
+    <%- include('./reuseables/header.ejs', { blog: true, isLogin, isUrdu }) %>
+
+    <% if(typeof blogs !== 'undefined' && blogs.length > 0) { %>
+      <section class="news">
+        <h2 class="s_h2">Results of <%= title %></h2>
+
+        <div class="newsFeed">
+        <% blogs.forEach(blog => {%>
+            <div class="newsCard">
+              <div class="newsImg">
+                <img src="<%= blog.imgSrc %>" alt="<%= blog.title %>" />
+              </div>
+              <div class="newsTitle"  <%= blog.isUrdu ? 'dir=rtl' : ''  %>><%= blog.title %></div>
+              <div class="newsDesc"  <%= blog.isUrdu ? 'dir=rtl' : ''  %>><%- blog.desc.substr(0, 50) %>.......</div>
+              <a href="/blog/<%= blog._id %>" class="btn moreR"><%= isUrdu ? "مزید تلاش کریں!" : "Find More!" %></a>
+            </div>
+        <%}) %>
+        </div>
+
+        <% if (typeof route !== 'undefined') { %>
+          <div class="pagination text-center">
+            <a href="<%= route %>?page=<%= (page - 1) %>" class="pagination_btn <%= (page - 1) > 0 ? 'prev' : 'disable' %>">&#8249;</a>
+            <a href="<%= route %>?page=<%= page %>" class="pagination_btn">Page <%= page %></a>
+            <a href="<%= route %>?page=<%= (page + 1) %>" class="pagination_btn <%= page < blogsCount ? 'next' : 'disable' %>">&#8250;</a>
+          </div>
+        <% } %>
+
+      </section>
+    <% } else { %>
+      <div class="p_some_y">
+        <%- include('./reuseables/error.ejs', { errorMsg: 'No blogs added to this catagory by Admin...' }) %>
+      </div>
+    <% } %>
+
+    <%- include('./reuseables/footer.ejs') %>
+  </body>
+</html>

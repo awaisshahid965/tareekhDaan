@@ -1,0 +1,21 @@
+{
+  "name": "tareekhdaan",
+  "version": "1.0.1",
+  "description": "A Simple single admin Blog app with WYSIWYG editor + ENGLISH/URDU support.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "author": "Muhammad Awais",
+  "license": "ISC",
+  "dependencies": {
+    "connect-mongo": "^3.2.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.12.1",
+    "nodemon": "^2.0.6"
+  }
+}

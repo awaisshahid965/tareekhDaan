@@ -1,0 +1,16 @@
+  <%- include('./head.ejs', { title: 'Error', isUrdu }) %>
+  <body>
+    <%- include('./header.ejs', { isLogin, val: '',  }) %>
+
+    <div class="nofound text-center p_some_y" style="margin-bottom: 4rem;" dir="ltr">
+      <div class="nofound_img">
+        <img src="/assets/dberror.svg" alt="error" />
+      </div>
+      <p>Oppsis...</p>
+      <p><b style="color: red;">Error <%= errorCode %></b>, <%= errorType %></p>
+      <p><%= errorMsg %>...</p>
+    </div>
+
+    <%- include('./footer.ejs') %>
+  </body>
+</html>

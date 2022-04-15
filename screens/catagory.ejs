@@ -1,0 +1,37 @@
+  <%- include('./reuseables/head.ejs', { title: 'Catagories', isUrdu }) %>
+  <body>
+    <%- include('./reuseables/header.ejs', { catg: true, isLogin, isUrdu }) %>
+
+    <% if(typeof catagories !== 'undefined' && catagories.length > 0) { %>
+      <section class="catg">
+        <h2 class="s_h2"><%= isUrdu ? "آپ کون سا پڑھنا چاہتے ہیں؟" : "which one you want to read ?" %></h2>
+
+        <div class="catg_cards_container">
+        <% catagories.forEach(catg => { %>
+            <div class="catg_card">
+              <a href="/result/<%= catg.title %>" class="">
+                <div class="catg_card_img">
+                  <img src="<%= catg.imgSrc %>" alt="<%= catg.title %>" />
+                </div>
+                <p class="catg_card_title"><%= catg.title %></p>
+              </a>
+              <% if (isLogin) { %>
+                <section class="edit_catg">
+                  <a href="/update_catg/<%= catg._id %>" class="update">&#9998;</a>
+                  <a href="/delete_catg/<%= catg._id %>?img=<%= catg.imgSrc %>&name=<%= catg.title %>" class="delete">&#10007;</a>
+                </section>
+              <% } %>
+            </div>
+        <% }) %>
+        </div>
+
+        </section>
+    <% } else { %>
+      <div class="p_some_y">
+        <%- include('./reuseables/error.ejs', { errorMsg: 'No catagory is created by Admin...' }) %>
+      </div>
+    <% } %>
+
+    <%- include('./reuseables/footer.ejs') %>
+  </body>
+</html>

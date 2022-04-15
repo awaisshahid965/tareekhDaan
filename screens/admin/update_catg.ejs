@@ -1,0 +1,47 @@
+  <%- include('../reuseables/head.ejs', { title: 'Update Catagory', isUrdu }) %>
+  <body>
+    <%- include('../reuseables/header.ejs', { val: 'catg', isLogin, isUrdu }) %>
+
+    <% if (e !== '') { %>
+      <div class="errorMsg e">
+        <%= e %>
+      </div>
+    <% } %>
+
+    <% if (i !== '') { %>
+      <div class="errorMsg i">
+        <%= i %>
+      </div>
+    <% } %>
+
+    <% if (typeof catag !== 'undefined') { %>
+      <section class="edit_cat">
+        <h2 class="s_h2"><%= isUrdu ? "زمرہ اپ ڈیٹ کریں" : "Update Catagory" %></h2>
+        <form action="/update_catg/<%= catag._id %>" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="imgName" value="<%= catag.imgSrc %>">
+          <div class="img">
+            <img src="<%= catag.imgSrc %>" alt="img__choose" />
+          </div>
+          <div class="select_img">
+            <label for="filechs"><%= isUrdu ? "تصویری فائل کا انتخاب کریں" : "Click Here Choose Image File ..." %></label>
+            <input type="file" id="filechs" name="imageFile">
+          </div>
+          <div class="input_area">
+            <input type="text" name="catagoryTitle" placeholder="<%= isUrdu ? "زمرہ کا عنوان درج کریں" : "Enter Category Title ..." %>" value="<%= catag.title %>" />
+          </div>
+          <div class="input_area">
+              <input type="submit" value="<%= isUrdu ? "زمرہ اپ ڈیٹ کریں" : "Update Catagory" %>" class="select_cat_btn" name="ok" />
+            </div>
+        </form>
+        <script type="text/javascript">
+          document.querySelector('#filechs').addEventListener('change', function() {
+            let src = window.URL.createObjectURL(document.querySelector('#filechs').files[0]);
+            document.querySelector('.img img').src = src;
+          });
+        </script>
+      </section>
+    <% } %>
+
+    <%- include('../reuseables/footer.ejs') %>
+  </body>
+</html>

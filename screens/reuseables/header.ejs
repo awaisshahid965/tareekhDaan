@@ -1,0 +1,39 @@
+<header dir="ltr">
+
+  <div class="title-main">
+    <h1 class="main-heading"><%= isUrdu ? "تاریخ دان" : "TareeKhDaan" %></h1>
+    <p><span><%= isUrdu ? "اوراقِ گُم گُشتہ" : "the authentic history" %></span></p>
+  </div>
+
+  <div class="navi some_navi_style">
+    <nav class="nav">
+      <ul>
+        <li class="<%= typeof home !== 'undefined' ? 'active' : ''  %>"> <a href="/">Home</a> </li>
+        <li class="<%= typeof catg !== 'undefined' ? 'active' : ''  %>"> <a href="/catagory">Catagories</a> </li>
+        <li class="<%= typeof blog !== 'undefined' ? 'active' : ''  %>"> <a href="/blog">Blogs</a> </li>
+        <li class="<%= typeof about !== 'undefined' ? 'active' : ''  %>"> <a href="/about">About</a> </li>
+      </ul>
+    </nav>
+    <div class="lang">
+      <ul>
+        <li class="<%= !isUrdu ? 'active' : '' %>"> <a href="/language?lang=en">Eng</a> </li>
+        <li class="<%= isUrdu ? 'active' : '' %>"> <a href="/language?lang=ur">اردو</a> </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="search">
+    <form class="search-area" action="/search" method="post">
+      <input type="text" class="searchBox" placeholder="Search" name="search">
+      <button type="submit" class="searchButton" name="button">
+        <img src="../assets/search.svg" alt="">
+      </button>
+    </form>
+  </div>
+
+  <% if(typeof val === 'undefined') { val = '' } %>
+  <% if (isLogin) { %>
+    <%- include('../reuseables/admin_nav.ejs', { val }) %>
+  <% } %>
+
+</header>

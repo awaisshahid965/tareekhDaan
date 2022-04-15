@@ -1,0 +1,67 @@
+  <%- include('../reuseables/head.ejs', { title: 'Add Blog', isUrdu }) %>
+  <body>
+    <%- include('../reuseables/header.ejs', { val: 'blog', isLogin, isUrdu }) %>
+
+    <% if(catgg.length > 0) { %>
+      <section class="edit_cat">
+        <h2 class="s_h2"><%= isUrdu ? "نیا بلاگ شامل کریں" : "Add a new Blog" %></h2>
+        <form action="/add_blog" method="post" enctype="multipart/form-data">
+          <% if (e !== '') { %>
+            <div class="errorMsg e">
+              <%= e %>
+            </div>
+          <% } %>
+
+          <% if (i !== '') { %>
+            <div class="errorMsg i">
+              <%= i %>
+            </div>
+          <% } %>
+          <div class="img">
+            <img src="../assets/select.svg" alt="img__choose" />
+          </div>
+          <div class="select_img">
+            <label for="filechs"><%= isUrdu ? "تصویری فائل کا انتخاب کریں" : "Click Here Choose Image File ..." %></label>
+            <input type="file" id="filechs" name="imageFile">
+          </div>
+          <div class="input_area">
+            <input type="text" name="catagoryTitle" placeholder="<%= isUrdu ? "بلاگ کا عنوان" : "Enter Blog Title ..." %>" />
+          </div>
+          <div class="input_area wysying">
+            <div id="editorjs"></div>
+            <div id="output" contenteditable="true"></div>
+            <textarea name="catagoryDesc"></textarea>
+          </div>
+          <select name="catagoryOptions">
+            <% catgg.forEach(opt => { %>
+                <option> <%= opt.title %> </option>
+            <% }) %>
+          </select>
+          <div class="input_area">
+              <input type="submit" value="<%= isUrdu ? "بلاگ شامل کریں" : "Add Blog" %>" class="select_cat_btn" name="ok" />
+          </div>
+        </form>
+        <script type="text/javascript">
+          document.querySelector('#filechs').addEventListener('change', function() {
+            let src = window.URL.createObjectURL(document.querySelector('#filechs').files[0]);
+            document.querySelector('.img img').src = src;
+          });
+        </script>
+      </section>
+    <% } else { %>
+      <div class="nofound text-center p_some_y">
+        <div class="nofound_img">
+          <img src="/assets/error.svg" alt="error" />
+        </div>
+        <p><b style="color: red;"><%= isUrdu ? "احتیاط!" : "Caution!" %></b></p>
+        <p><%= isUrdu ? "براہ کرم پہلے کچھ کیٹیگریز بنائیں" : "Please Make Some Catagories first..." %></p>
+      </div>
+    <% } %>
+
+    <%- include('../reuseables/footer.ejs') %>
+  </body>
+  <script type="text/javascript">
+    const isUrdu = <%= isUrdu %>;
+  </script>
+  <script src="/editor.js"></script>
+</html>

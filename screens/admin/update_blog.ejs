@@ -1,0 +1,61 @@
+  <%- include('../reuseables/head.ejs', { title: 'Update Blog', isUrdu }) %>
+  <body>
+    <%- include('../reuseables/header.ejs', { val: 'blog', isLogin, isUrdu }) %>
+
+      <% if (e !== '') { %>
+        <div class="errorMsg e">
+          <%= e %>
+        </div>
+      <% } %>
+
+      <% if (i !== '') { %>
+        <div class="errorMsg i">
+          <%= i %>
+        </div>
+      <% } %>
+
+      <section class="edit_cat">
+        <h2 class="s_h2"><%= isUrdu ? "بلاگ کو اپ ڈیٹ کریں" : "Update Blog" %></h2>
+        <form action="/update_blog/<%= blogg._id %>" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="imgName" value="<%= blogg.imgSrc %>">
+          <div class="img">
+            <img src="<%= blogg.imgSrc %>" alt="img__choose" />
+          </div>
+          <div class="select_img">
+            <label for="filechs"><%= isUrdu ? "تصویری فائل کا انتخاب کریں" : "Click Here Choose Image File ..." %></label>
+            <input type="file" id="filechs" name="imageFile">
+          </div>
+          <div class="input_area">
+            <input type="text" name="catagoryTitle" placeholder="<%= isUrdu ? "بلاگ کا عنوان" : "Enter Blog Title ..." %>" value="<%= blogg.title %>" />
+          </div>
+          <div class="input_area">
+            <div id="editorjs"></div>
+            <div id="output" contenteditable="true"></div>
+            <textarea name="catagoryDesc"></textarea>
+          </div>
+          <select name="catagoryOptions">
+            <% catag.forEach(opt => { %>
+                <option <%= opt.title === blogg.catagory ? 'selected' : '' %>> <%= opt.title %> </option>
+            <% }) %>
+          </select>
+          <div class="input_area">
+              <input type="submit" value="<%= isUrdu ? "اپ ڈیٹ کریں" : "Update Blog" %>" class="select_cat_btn upd" name="ok" />
+          </div>
+        </form>
+        <script type="text/javascript">
+          document.querySelector('#filechs').addEventListener('change', function() {
+            let src = window.URL.createObjectURL(document.querySelector('#filechs').files[0]);
+            document.querySelector('.img img').src = src;
+          });
+          const data = `<%- blogg.desc %>`;
+          document.querySelector('#output').innerHTML = data;
+        </script>
+      </section>
+
+    <%- include('../reuseables/footer.ejs') %>
+  </body>
+  <script type="text/javascript">
+    const isUrdu = <%= isUrdu %>;
+  </script>
+  <script src="/editor.js"></script>
+</html>

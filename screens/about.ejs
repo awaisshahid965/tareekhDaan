@@ -1,0 +1,52 @@
+  <%- include('./reuseables/head.ejs', { title: 'About', isUrdu }) %>
+  <body>
+    <%- include('./reuseables/header.ejs', { about: true, isLogin, isUrdu }) %>
+
+    <div class="about" dir="ltr">
+
+      <div class="author">
+        <h2 class="s_h2 author-title">About TareeKhDaan.Com</h2>
+        <p>
+          In this era of modern warfare, we're left behind others in the game of progress.
+          No nation can grow unless it learns from its history and the mistakes which it had made in past.
+          Tareekh Daan is especially created for this aim to promote Islamic culture ,
+          civilization and the enduring legacy of Muslim thinkers , philosophers, scientists and military generals
+          <span> &mdash; daan.tareekh@gmail.com</span>
+        </p>
+      </div>
+      <div class="author">
+        <h2 class="s_h2 author-title">About Author</h2>
+        <p>
+          Usman Saffri is a admired historian who has been in this field and has written many articles
+           about Islamic History and culture. His articles have peen published in various magazines in Pakistan especially
+           The Economist - Pakistan along with various translations of English to Urdu and vice versa.
+          <span> &mdash; usmansaffri@gmail.com</span>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="author_details" dir="ltr">
+      <div class="author_img">
+        <img src="/admin.jpeg" alt="Usman">
+      </div>
+      <div class="author_desc">
+        <div class="author_name">Usman Saffri</div>
+        <div class="author_address"><b>Address:</b> some xyz Country, unknown street, house **, FortAbbas</div>
+        <div class="author_contact">
+          <a href="https://www.facebook.com/daantareekh">
+            <img src="../assets/facebook.svg" alt="facebook" />
+          </a>
+          <a href="https://twitter.com/tareekhdan">
+            <img src="../assets/twitter.svg" alt="twitter" />
+          </a>
+          <a href="https://www.instagram.com/tareekhdan/">
+            <img src="../assets/instagram.svg" alt="instagram" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./reuseables/footer.ejs') %>
+  </body>
+</html>

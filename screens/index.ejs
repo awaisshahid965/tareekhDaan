@@ -1,0 +1,31 @@
+  <%- include('./reuseables/head.ejs', { title: 'Home', isUrdu }) %>
+  <body>
+    <%- include('./reuseables/header.ejs', { home: true, isLogin, isUrdu }) %>
+    <section class="news">
+
+      <h2 class="s_h2"><%= isUrdu ? "تازہ ترین بلاگ" : "Latest Blogs" %></h2>
+
+      <% if (typeof data !== 'undefined' && data.length > 0) { %>
+        <div class="newsFeed">
+        <% data.forEach(blog => {%>
+            <div class="newsCard">
+              <div class="newsImg">
+                <img src="<%= blog.imgSrc %>" alt="<%= blog.title %>" />
+              </div>
+              <div class="newsTitle"  <%= blog.isUrdu ? 'dir=rtl' : ''  %>><%= blog.title %></div>
+              <div class="newsDesc renderedAsCard"  <%= blog.isUrdu ? 'dir=rtl' : ''  %>><%- blog.desc %>.......</div>
+              <a href="/blog/<%= blog._id %>" class="btn moreR"><%= isUrdu ? "مزید پڑھیں" : "Read More" %></a>
+            </div>
+        <%}) %>
+        </div>
+        <div class="text-center">
+          <a href="/blog" class="btn moreF"><%= isUrdu ? "مزید تلاش کریں!" : "Find More!" %></a>
+        </div>
+      <% } else { %>
+        <%- include('./reuseables/error.ejs', { errorMsg: 'Nothing to Show...' }) %>
+      <% } %>
+
+    </section>
+    <%- include('./reuseables/footer.ejs') %>
+  </body>
+</html>

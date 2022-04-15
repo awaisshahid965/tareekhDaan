@@ -1,0 +1,48 @@
+  <%- include('./reuseables/head.ejs', { title: 'Blog', isUrdu }) %>
+  <body>
+    <%- include('./reuseables/header.ejs', { blog: true, isLogin, isUrdu }) %>
+
+    <% if(typeof blog !== 'undefined' && Object.values(blog).length > 0) { %>
+        <section class="singleFeed">
+          <div class="wherei"> <a href="/blog">blogs</a> &#187; <a href="/blog/<%= blog._id %>"><%= blog.title %></a> </div>
+          <% if (isLogin) { %>
+            <section class="edit_form">
+              <a href="/update_blog/<%= blog._id %>" class="update">Update Blog</a>
+              <a href="/delete_blog/<%= blog._id %>?img=<%= blog.imgSrc %>" class="delete">Delete Blog</a>
+            </section>
+          <% } %>
+          <div class="sf_container" <%= blog.isUrdu ? 'dir=rtl' : ''  %>>
+            <div class="sf_card">
+              <div class="sf_img">
+                <img src="<%= blog.imgSrc %>" alt="<%= blog.title %>" />
+              </div>
+              <h2 class="sf_title"><%= blog.title %></h2>
+              <div class="sf_desc"><%- blog.desc %></div>
+          </div>
+        </section>
+
+        <% if (blogRecent.length > 0) { %>
+        <section class="catg">
+          <h2 class="s_h2" style="background-color: #f6f6f6; padding: 1rem 0;"><%= isUrdu ? "سب سے حالیہ ..." : "most Recent.." %></h2>
+          <div class="catg_cards_container">
+          <% blogRecent.forEach(blog => { %>
+              <div class="catg_card">
+                <a href="/blog/<%= blog._id %>" class="">
+                  <div class="catg_card_img">
+                    <img src="<%= blog.imgSrc %>" alt="<%= blog.title %>" />
+                  </div>
+                  <p class="catg_card_title"><%= blog.title %></p>
+                </a>
+              </div>
+          <% }) %>
+          </div>
+        </section>
+        <% } %>
+
+    <% } else { %>
+      <%- include('./reuseables/error.ejs', { errorMsg: 'No Such Blog Exists...' }) %>
+    <% } %>
+
+    <%- include('./reuseables/footer.ejs') %>
+  </body>
+</html>
